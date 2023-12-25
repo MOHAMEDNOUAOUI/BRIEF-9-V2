@@ -42,6 +42,34 @@ class SCORE {
         $inser->bindValue(':userID' , $this->getUserId() , PDO::PARAM_STR);
         $inser->bindValue(':userNAME' , $this->getUserName() , PDO::PARAM_STR);
         $inser->execute();
+
+        $_SESSION['iduser'] = $this->db->lastInsertId();
+    }
+
+    public function get_all_user_scores() {
+        $iduser = $this->getUserId();
+        $fetch = $this->db->prepare('SELECT * FROM score WHERE user_id = :id');
+        $fetch->bindValue(':id' , $iduser , PDO::PARAM_STR);
+        $fetch->execute();
+        $result = $fetch->fetchAll(PDO::FETCH_ASSOC);
+        $array = [];
+        foreach($result as $row) {
+            $score = new SCORE();
+            $score->setUserId($row['user_id']);
+            $score->setUserName($row['user_name']);
+            $score->setUserScore($row['user_score']);
+            $array [] = $score;
+        }
+        return $array;
+    } 
+
+    public function last_id_insert_score () {
+        $lastid = $_SESSION['iduser'];
+        $update = $this->db->prepare("UPDATE score SET user_score = :score WHERE ID = :id AND user_name = :name");
+        $update->bindValue(':score' , $_SESSION['score'] , PDO::PARAM_INT);
+        $update->bindValue(':id' , $lastid , PDO::PARAM_STR);
+        $update->bindValue(':name' , $_SESSION['name'] , PDO::PARAM_STR);
+        $update->execute();
     }
 
 }

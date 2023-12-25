@@ -4,7 +4,6 @@ require_once '../CONTROLER/QUEST_controler.php';
 $questionCLASS = new QUESTION();
 $answerCLASS = new ANSWERS();
 
-
     if(isset($_SESSION['WRONGQUESTIONSID'])){
         foreach($_SESSION['WRONGQUESTIONSID'] as $key=>$value) {
             if($value === '') {
@@ -25,6 +24,9 @@ $answerCLASS = new ANSWERS();
                }
               
         }
+    }
+    else {
+        echo "YOU GOT IT ALL RIGHT";
     }
     
     ?>

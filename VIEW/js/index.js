@@ -1,3 +1,8 @@
+    function load () {
+        location.reload();
+    }
+    
+    
     window.addEventListener('beforeunload', () => {
         let XHR = new XMLHttpRequest();
 
@@ -76,7 +81,7 @@
     // }
 
 
-    var h1 = document.querySelector('.h1');
+
     var questionOBJECT = [];
 
     var questioncont = document.querySelector('.question');
@@ -148,13 +153,18 @@
                 </div>
             </div>
             <div class="next float-right">
-                <button class="NEXT" onclick="answerid()">NEXT</button>
+           
+            <button class="NEXT" onclick="answerid()"> ${index ==9 ?"finish" :"NEXT"}</button>
             </div>
         </div>
     </div>`
+
+
     index++;
     sendDataKey();
-        }else {
+
+        }
+            else {
                 let xml = new XMLHttpRequest();
 
                 xml.onreadystatechange = function() {
@@ -163,7 +173,7 @@
                     }
                 }
 
-                xml.open('GET' , './result.php');
+                xml.open('GET' , './endpoints.php');
                 xml.send();
         }
     }
@@ -241,6 +251,30 @@
         xhm.send("useranswer=" + encodeURIComponent(id) + "&question=" + encodeURIComponent(idquestion));
     }
     
+
+    function scoreboard () {
+        let xml = new XMLHttpRequest();
+
+        xml.onload = function () {
+            if(this.readyState == 4&& this.status==200) {
+                container.innerHTML = this.responseText;
+            }
+        }
+        xml.open('GET' , './scoreboard.php');
+        xml.send();
+    }
+
+    function correction () {
+        let xml = new XMLHttpRequest();
+
+        xml.onload = function () {
+            if(this.readyState == 4&& this.status==200) {
+                container.innerHTML = this.responseText;
+            }
+        }
+        xml.open('GET' , './answers.php');
+        xml.send();
+    }
 
 
 
