@@ -34,7 +34,7 @@ if (isset($_POST['useranswer']) && isset($_POST['question'])) {
         if ($answerid == $questioncorrect) {
             $htmlResponse =
             
-            '<div class="d-flex flex-column">
+            '<div id="correct" class="d-flex flex-column justify-content-center align-items-center">
             <h1>CORRECT SIRR</h1>
             <h1>' . $helpers[array_rand($helpers)] . '</h1>
             </div>';

@@ -20,12 +20,21 @@ require '../CONTROLER/SCORE_CONTROLER.php';
             <source src="./IMGS/Sea of Stars - PlayStation Demo Now Available!.mp4">
         </video>
     </div> -->
+    <div class="popup d-flex align-items-center position-absolute d-none">
+        <div class="C position-absolute"></div>
+        <div class="D position-absolute">USERNAME IS WRONG</div>
+        <div class="N position-absolute d-flex align-items-center justify-content-center">
+            X
+        </div>
+    </div>
 
-    <div></div>
+    <div id="toggle" class="position-absolute d-flex" style="top:1rem;left:1rem" >
+    <i class="indicator position-absolute"></i>
+</div>
 
     <!--PROGRESS BAR -->
-    <div class="BIG d-flex justify-content-center align-items-center">
-      <div id="text" class="position-absolute">QUIZZ <br>CODE X</div>
+    <div class="BIG d-flex flex-column justify-content-center align-items-center">
+      <div id="text" class="position-absolute btn background btn-orange">QUIZZ <br>CODE X</div>
         <div id="topbar" class="topbar position-relative d-flex justify-content-center d-none">
             <div id="progress" class="pro postion-relative">
             <h2 id="score" class="score position-absolute">score : 0</h2>
@@ -55,7 +64,7 @@ require '../CONTROLER/SCORE_CONTROLER.php';
                 <div class="left d-flex flex-column w-75 px-0 mx-0 align-items-center justify-content-center">
                     <form action="" id="myForm" class="d-flex flex-column justify-content-center align-items-center"> 
                     <div class="marquee-placeholder">
-                        <input type="text" class="text-center" required name="PLAYERNAME" style="width:17rem;height:2rem" id="PLAYERNAME" placeholder="Player Name">
+                        <input type="text" class="text-center" required name="PLAYERNAME" style="width:17rem;height:3rem" id="PLAYERNAME" placeholder="Player Name">
                         <marquee class="img" direction="right">
                             <img width="30px" src="./IMGS/cristian-resendiz-run-rhyme-run-big.gif" alt="">
                         </marquee>
@@ -65,11 +74,13 @@ require '../CONTROLER/SCORE_CONTROLER.php';
                     <div class="d-flex w-100 mt-1 gap-1 align-items-center justify-content-center">
         <!-- <img type="submit" id="ENTER"  name="ENTER" style="width:8rem" src="./IMGS/START2.png" alt="">
         <img type="submit" src="./IMGS/SCOREBOARD2.png" class="scoreboard" onclick="scoreboard ()" style="width:14rem" alt=""> -->
-        <div type="submit" id="ENTER"  name="ENTER" style="width:8rem" class="btn enter btn-dark">START</div>
-        <div type="submit" onclick="scoreboard ()" style="width:8.5rem" class="btn scoreboard btn-dark">SCOREBOARD</div>
+        <div type="submit" id="ENTER"  name="ENTER" style="width:8rem" class="pt btn enter btn-light">START</div>
+        <div type="submit" onclick="scoreboard ()" style="width:8.5rem" class="pt btn scoreboard btn-light">SCOREBOARD</div>
+        
         </div> 
-
+        
                     </form> 
+                    <button class="btn btn-light RULES text-center w-50 mt-1">RULES</button>
                 </div> 
             </div>
 
@@ -80,7 +91,9 @@ require '../CONTROLER/SCORE_CONTROLER.php';
 
 
     <script src="./js/index.js"></script>
+    <script src="./js/design.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>
+

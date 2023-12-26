@@ -2,6 +2,16 @@
         location.reload();
     }
 
+    function shadow() {
+        var text = document.getElementById('text');
+    var shadow ='';
+    for(var i = 0;i<20;i++){
+        shadow +=(shadow? ',':'') + i*1+'px ' +i*1+'px 0 #C0C0C0';
+    }
+    text.style.textShadow = shadow;
+    }
+    shadow();
+
     var progresscontainer  = document.querySelector('#topbar');
     var scorediv = document.querySelector('#score');
     var pagediv = document.querySelector('#page');
@@ -127,12 +137,12 @@
 
     function timer () {
         var counterdiv = document.querySelector('.counter');
-        let counter = 100;
+        let counter = 20;
         counterdiv.textContent = counter;
 
         var counterintervale = setInterval(function() {
             counterdiv.textContent = counter;
-            counter--;
+            // counter--;
 
             if(counter <0) {
                 clearInterval(counterintervale);
@@ -162,19 +172,19 @@
                         <div class="cont d-flex flex-column w-100 mt-2">
         <div class="ALL d-flex flex-column w-100 mt-5">
             <div class="containerquestions d-flex flex-column justify-content-center align-items-center w-100 gap-5">
-                <div class="question w-75 text-center bg-primary text-white py-4" data-key="${questionOBJECT[i].question_id}">
+                <div id="animatedDiv" class="question text-white text-center" data-key="${questionOBJECT[i].question_id}">
                 ${questionOBJECT[i].question_text}
                     <!-- Index placeholder -->
                 </div>
                 <div class="reponses row w-100 gap-5 align-items-center justify-content-center">
                     <!-- Answers loop placeholder -->
-                    <div class="answser1 col-5 bg-danger text-center py-3">
+                    <div class="answser1 col-5 bg-danger text-center py-4">
                         
                     </div>
                     <!-- End of answers loop placeholder -->
                 </div>
             </div>
-            <div class="next float-right ">
+            <div id="next" class="next float-right">
            
             <button class="NEXT btn btn-light" onclick="answerid()">NEXT</button>
             </div>
@@ -182,7 +192,7 @@
     </div>
     
     <div class="cout position-absolute" style="width:100px;height:100px">
-                    <img src="./IMGS/clock.png" class="w-100 h-100" alt="">
+                    <img  src="./IMGS/clock.png" class="imagecout w-100 h-100" alt="">
                     <div class="counter position-absolute"></div>
                   </div>
                     `;
@@ -230,7 +240,7 @@
     </div>
     
     <div class="cout position-absolute" style="width:100px;height:100px">
-                    <img src="./IMGS/clock.png" class="w-100 h-100" alt="">
+                    <img  src="./IMGS/clock.png" class="imagecout w-100 h-100" alt="">
                     <div class="counter position-absolute"></div>
                   </div>
                     `;
@@ -296,13 +306,23 @@
     
     // Add event listener to each answer
     var answers = document.querySelectorAll('.answser1');
-    var N = document.querySelector('.next');
-    function setdata (idd) {
-        id = idd;
-        console.log(id);
-        return id;
-        
-    }
+var N = document.querySelector('.next');
+
+
+function setdata(element, idd) {
+    var answers = document.querySelectorAll('.answser1');
+    answers.forEach((btn) => {
+        if (btn !== element && btn.classList.contains('clicked')) {
+            btn.classList.remove('clicked');
+        }
+    });
+
+    element.classList.toggle('clicked');
+
+    id = idd;
+    console.log(id);
+    return id;
+}
     
 
     var score = 0;
@@ -338,6 +358,8 @@
         xhm.open('POST' , '../CONTROLER/QUESTION_ANSWER.php');
         xhm.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhm.send("useranswer=" + encodeURIComponent(id) + "&question=" + encodeURIComponent(idquestion));
+
+        id = '';
     }
     
 
