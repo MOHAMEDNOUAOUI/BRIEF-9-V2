@@ -156,13 +156,11 @@
             counterdiv.textContent = counter;
             counter--;
 
-            if (counter < 0) {
-                clearInterval(counterInterval);
+            if (counter <= 0) {
+                clearInterval(counterintervale);
                 answerid();
-            } else if (counter === 0) {
-                clearInterval(counterInterval);
-                answerid();
-            }
+            } 
+
         },1000)
     }
 
