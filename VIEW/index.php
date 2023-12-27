@@ -88,6 +88,13 @@ require '../CONTROLER/SCORE_CONTROLER.php';
     </div>
 
 
+    <div class="position-absolute d-flex gap-1 bar">
+        <div class="bars br left-bar"></div>
+        <div class="bars middle-bar"></div>
+        <div class="bars right-bar"></div>
+</div>
+
+
 
 
     <script src="./js/index.js"></script>

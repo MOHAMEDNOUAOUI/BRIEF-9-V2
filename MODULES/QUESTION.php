@@ -88,7 +88,7 @@ class QUESTION {
             $question->set_QestionID($row['question_id']);
             $question->set_QuestionTEXT($row['question_text']);
             $question->setQuestionDescription($row['question_description']);
-            $question->setQuestionTheme($row['question_theme']);
+            $question->setQuestionTheme($row['theme_text']);
             $question->setCorrect_Answer($row['Correct_Answer']);
             $questions[] = $question;
         }

@@ -26,12 +26,13 @@ foreach($scores as $score) {
 ?>
 </tbody>
 </table>
-<div class="d-flex flex-column">
-<img src="./IMGS/PLAY.png" class="PLAY" style="width:10rem" onclick="load ()" type="submit" alt="">
+<div class="d-flex gap-2">
+<div type="submit" id="ENTER"  name="ENTER" onclick="load()" style="width:8rem" class="pt btn enter btn-light">START</div>
 <?php
 if(isset($_SESSION['WRONGQUESTIONSID'])) {
     ?>
-     <img src="./IMGS/CORRECTION.png" class="correction" onclick="correction()" style="width:10rem" alt="">
+     <div type="submit" onclick="correction()" style="width:8rem" class="pt btn enter btn-light">CORRECTION</div>
+     <div type="submit" onclick="endpoint()" style="width:8rem" class="pt btn enter btn-light">RESULT</div>
     <?php
 }
 ?>

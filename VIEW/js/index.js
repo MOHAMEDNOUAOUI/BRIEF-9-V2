@@ -1,3 +1,9 @@
+    var leftbar = document.querySelector('.left-bar');
+    var midbar = document.querySelector('.middle-bar');
+    var right = document.querySelector('.right-bar');
+    
+    
+    
     function load () {
         location.reload();
     }
@@ -46,6 +52,12 @@
                 })
                 progresscontainer.classList.remove('d-none');
                 fetch_question_first();
+                if(leftbar.classList.contains('br')) {
+                    leftbar.classList.remove('br');
+                    right.classList.remove('br');
+                    midbar.classList.add('br');
+                }
+               
             }   
         };
 
@@ -142,10 +154,13 @@
 
         var counterintervale = setInterval(function() {
             counterdiv.textContent = counter;
-            // counter--;
+            counter--;
 
-            if(counter <0) {
-                clearInterval(counterintervale);
+            if (counter < 0) {
+                clearInterval(counterInterval);
+                answerid();
+            } else if (counter === 0) {
+                clearInterval(counterInterval);
                 answerid();
             }
         },1000)
@@ -172,9 +187,11 @@
                         <div class="cont d-flex flex-column w-100 mt-2">
         <div class="ALL d-flex flex-column w-100 mt-5">
             <div class="containerquestions d-flex flex-column justify-content-center align-items-center w-100 gap-5">
+            <div class="text-white text-center">THEME${questionOBJECT[i].question_theme}</div>
                 <div id="animatedDiv" class="question text-white text-center" data-key="${questionOBJECT[i].question_id}">
                 ${questionOBJECT[i].question_text}
                     <!-- Index placeholder -->
+                 
                 </div>
                 <div class="reponses row w-100 gap-5 align-items-center justify-content-center">
                     <!-- Answers loop placeholder -->
@@ -184,7 +201,7 @@
                     <!-- End of answers loop placeholder -->
                 </div>
             </div>
-            <div id="next" class="next float-right">
+            <div class="next float-right">
            
             <button class="NEXT btn btn-light" onclick="answerid()">NEXT</button>
             </div>
@@ -217,16 +234,18 @@
         if(index< 10){
             container.innerHTML = `
 
-                        <div class="cont d-flex flex-column w-100 mt-2">
+            <div class="cont d-flex flex-column w-100 mt-2">
         <div class="ALL d-flex flex-column w-100 mt-5">
             <div class="containerquestions d-flex flex-column justify-content-center align-items-center w-100 gap-5">
-                <div class="question w-75 text-center bg-primary text-white py-4" data-key="${questionOBJECT[index].question_id}">
+            <div class="text-white text-center">THEME${questionOBJECT[index].question_theme}</div>
+                <div id="animatedDiv" class="question text-white text-center" data-key="${questionOBJECT[index].question_id}">
                 ${questionOBJECT[index].question_text}
                     <!-- Index placeholder -->
+                 
                 </div>
                 <div class="reponses row w-100 gap-5 align-items-center justify-content-center">
                     <!-- Answers loop placeholder -->
-                    <div class="answser1 col-5 bg-danger text-center py-3">
+                    <div class="answser1 col-5 bg-danger text-center py-4">
                         
                     </div>
                     <!-- End of answers loop placeholder -->
@@ -234,7 +253,7 @@
             </div>
             <div class="next float-right">
            
-            <button class="NEXT btn btn-light" onclick="answerid()"> ${index ==9 ?"finish" :"NEXT"}</button>
+            <button class="NEXT btn btn-light" onclick="answerid()">NEXT</button>
             </div>
         </div>
     </div>
@@ -252,7 +271,13 @@
     
         }
             else {
-                let xml = new XMLHttpRequest();
+                endpoint();
+        }
+    }
+
+
+    function endpoint () {
+        let xml = new XMLHttpRequest();
 
                 xml.onreadystatechange = function() {
                     if(this.status==200) {
@@ -260,12 +285,16 @@
                         pagediv.classList.add('d-none');
                         scorediv.classList.add('d-none');
                         progresscontainer.classList.add('d-none');
+                        if(midbar.classList.contains('br')) {
+                            leftbar.classList.remove('br');
+                            right.classList.add('br');
+                            midbar.classList.remove('br');
+                        }
                     }
                 }
 
                 xml.open('GET' , './endpoints.php');
                 xml.send();
-        }
     }
 
 
@@ -340,7 +369,7 @@ function setdata(element, idd) {
         xhm.onload = function () {
             if (this.readyState == 4 && this.status == 200) {
                 
-    
+                console.log(this.responseText);
                 // Retrieve the score value from the JSON response
                 var responseObject = JSON.parse(this.responseText);
                 var htmlResponse = responseObject.htmlResponse;
@@ -384,10 +413,11 @@ function setdata(element, idd) {
 
         xml.onload = function () {
             if(this.readyState == 4&& this.status==200) {
+                
                 container.innerHTML = this.responseText;
             }
         }
-        xml.open('GET' , './answers.php');
+        xml.open('GET' , './result.php');
         xml.send();
     }
 

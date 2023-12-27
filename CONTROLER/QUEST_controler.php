@@ -59,6 +59,18 @@ class QUESTIONS_CONTROLLER {
     }
 }
 
+$QUESTION_CONTROLLER = new QUESTIONS_CONTROLLER();
+$answer_controler = new ANSWERS_CONTROLER();
+
+$QUESTION_CONTROLLER->fetch_random_questions();
+
+$questions = $QUESTION_CONTROLLER->getquestions();
+
+$questionsArray = array();
+foreach ($questions as $question) {
+    $questionsArray[] = $question->getAsArray();
+}
+
 
 
 

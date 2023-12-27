@@ -48,8 +48,7 @@ class SCORE {
 
     public function get_all_user_scores() {
         $iduser = $this->getUserId();
-        $fetch = $this->db->prepare('SELECT * FROM score WHERE user_id = :id');
-        $fetch->bindValue(':id' , $iduser , PDO::PARAM_STR);
+        $fetch = $this->db->prepare('SELECT * FROM score ORDER BY ID DESC LIMIT 5');
         $fetch->execute();
         $result = $fetch->fetchAll(PDO::FETCH_ASSOC);
         $array = [];

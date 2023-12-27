@@ -27,19 +27,25 @@ if(isset($_SESSION['score'])) {
     }
     else {
             ?>
-            <div class="d-flex flex-column">
-            <h1><?php echo $percentage."%"?></h1>
+            <div class="d-flex flex-column align-items-center justify-content-center">
+            
+            <h2 class="d-flex align-items-center justify-content-center" style="background:white;width:200px;height:200px;border-radius:1000px;font-size:5rem"><?php echo $percentage."%"?></h2>
+            <div class="py-2 d-flex flex-column align-items-center justify-content-center" style="width:40vw;background:white">
+            <h2>SCORE : <?php echo $_SESSION['score']?></h2>
             <h3>SORRY <?php echo $_SESSION['name']?>!!!</h3>
             <h4>BETTER LUCK NEXT TIME</h4>
             </div>
+            </div>
+            
+    
             <?php
     }
 
     ?>
-        <div class="d-flex">
-        <img src="./IMGS/PLAY.png" class="PLAY" style="width:6.4rem" onclick="load ()" type="submit" alt="">
-        <img type="submit" src="./IMGS/SCOREBOARD.png" class="scoreboard" onclick="scoreboard ()" style="width:10rem" alt="">
-        <img src="./IMGS/CORRECTION.png" class="correction" onclick="correction()" style="width:10rem" alt="">
+        <div class="d-flex gap-3 mt-2">
+        <div type="submit" onclick="load()" style="width:8rem" class="pt btn enter btn-light">START</div>
+        <div type="submit" onclick="scoreboard ()" style="width:8.5rem" class="pt btn scoreboard btn-light">SCOREBOARD</div>
+        <div type="submit" class="pt scoreboard btn btn-dark correction" onclick="correction()">CORRECTION</div>
         </div>
     <?php
 
